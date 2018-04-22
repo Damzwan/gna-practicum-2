@@ -1,12 +1,13 @@
 package gna;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import libpract.PriorityFunc;
 
 public class Solver
 {
+
+	public List<Board> solutionMethod;
 	/**
 	 * Finds a solution to the initial board.
 	 *
@@ -16,16 +17,22 @@ public class Solver
 	{
 		// Use the given priority function (either PriorityFunc.HAMMING
 		// or PriorityFunc.MANHATTAN) to solve the puzzle.
-		if (priority == PriorityFunc.HAMMING) {
-			// TODO
+        solutionMethod = new ArrayList<>();
+        Comparator<State> comparator;
+        if (priority == PriorityFunc.HAMMING) {
+		    comparator = Comparator.comparingInt(o -> (o.getCurrConfiguration().hamming() + o.getSteps()));
+
 		} else if (priority == PriorityFunc.MANHATTAN) {
-			// TODO
+            comparator = Comparator.comparingInt(o -> (o.getCurrConfiguration().manhattan() + o.getSteps()));
+
 		} else {
 			throw new IllegalArgumentException("Priority function not supported");
 		}
 
-		// TODO
-	}
+        PriorityQueue<State> queue = new PriorityQueue<>(comparator);
+        solve(initial, queue);
+
+        }
 	
 
 	/**
@@ -34,8 +41,47 @@ public class Solver
 	 */
 	public List<Board> solution()
 	{
-		return null; // TODO
+	    return solutionMethod;
 	}
+
+	public void solutionToString(){
+        for (int i = 0; i < solutionMethod.size(); i++) {
+            System.out.println(solutionMethod.get(i) + "\n");
+        }
+    }
+
+    public int[][] solutionBoard(Board board){
+        int[][] tiles = new int[board.getTiles().length][board.getTiles()[0].length];
+        int k = 1;
+        for (int i = 0; i < board.getTiles().length; i++) {
+            for (int j = 0; j < board.getTiles()[i].length; j++) {
+                tiles[i][j] = k;
+                k++;
+            }
+        }
+        tiles[board.getTiles().length-1][board.getTiles()[0].length - 1] = 0;
+        return tiles;
+    }
+
+    private int solve(Board initial, PriorityQueue<State> queue){
+        int currSteps = 0;
+        State currState = new State(initial, null, 0);
+        queue.add(currState);
+        int[][] result = solutionBoard(initial);
+
+        while (! currState.getCurrConfiguration().isEqualBoard(result)){
+            currState = queue.peek();
+            solutionMethod.add(currState.getCurrConfiguration());
+            currSteps++;
+            queue.remove();
+            List<Board> neighbors = (List<Board>) currState.getCurrConfiguration().neighbors();
+            for (Board currNeighbor: neighbors){
+                queue.add(new State(currNeighbor, currState.getCurrConfiguration(), currSteps));
+            }
+        }
+        return currSteps;
+    }
 }
+
 
 

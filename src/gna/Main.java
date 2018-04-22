@@ -15,14 +15,15 @@ class Main
 				tiles[i][j] = StdIn.readInt();
 		
 		Board initial = new Board(tiles);
+        System.out.println(initial.toString());
 		if (!initial.isSolvable())
 		{
 			System.out.println("No solution possible");
 		}
 		else
 		{
-			Solver solver = new Solver(initial, PriorityFunc.HAMMING);
-	
+			Solver solver = new Solver(initial, PriorityFunc.MANHATTAN);
+
 			for (Board board : solver.solution())
 				System.out.println(board);
 

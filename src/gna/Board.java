@@ -10,8 +10,7 @@ public class Board {
 
     // construct a board from an N-by-N array of tiles
     public Board(int[][] tiles) {
-        // TODO (make a deep copy of tiles and store it into this.tiles)
-        throw new RuntimeException("not implemented");
+        this.tiles = deepCopyOfMatrix(tiles);
     }
 
     // return number of blocks out of place
@@ -228,10 +227,10 @@ public class Board {
         return tiles;
     }
 
-    public boolean isEqualBoard(Board board){
+    public boolean isEqualBoard(int[][] otherTiles){
         for (int i = 0; i < tiles.length; i++) {
             for (int j = 0; j < tiles[i].length; j++) {
-                if (tiles[i][j] != board.getTiles()[i][j]) return false;
+                if (tiles[i][j] != otherTiles[i][j]) return false;
             }
         }
         return true;
