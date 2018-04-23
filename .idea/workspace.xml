@@ -3,20 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2bda1213-114f-45ce-9bc7-7e24dc7968f5" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/build.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/desktop.ini" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/gna2.iml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/Board.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/Main.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/Solver.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/State.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/UnitTests.class" />
       <change beforePath="" afterPath="$PROJECT_DIR$/out/production/gna2/gna/petitTest.class" />
-      <change beforePath="$PROJECT_DIR$/src/gna/Main.java" afterPath="$PROJECT_DIR$/src/gna/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/gna/Solver.java" afterPath="$PROJECT_DIR$/src/gna/Solver.java" />
-      <change beforePath="$PROJECT_DIR$/src/gna/State.java" afterPath="$PROJECT_DIR$/src/gna/State.java" />
-      <change beforePath="$PROJECT_DIR$/src/gna/UnitTests.java" afterPath="$PROJECT_DIR$/src/gna/UnitTests.java" />
-      <change beforePath="$PROJECT_DIR$/src/gna/petitTest.java" afterPath="$PROJECT_DIR$/src/gna/petitTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +31,8 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gna/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="357">
+              <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
               <folding>
                 <element signature="e#340#341#0" expanded="true" />
                 <element signature="e#392#393#0" expanded="true" />
@@ -430,7 +422,7 @@
       <workItem from="1524433652857" duration="1063000" />
       <workItem from="1524434878584" duration="2358000" />
       <workItem from="1524471289507" duration="678000" />
-      <workItem from="1524472110355" duration="34364000" />
+      <workItem from="1524472110355" duration="34375000" />
     </task>
     <task id="LOCAL-00001" summary="fixed all">
       <created>1524429579252</created>
@@ -446,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524437085554</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed all">
+      <created>1524510679429</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524510679430</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -482,7 +481,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42327000" />
+    <option name="totallyTimeSpent" value="42338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
@@ -839,8 +838,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gna/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="357">
+          <caret line="25" column="60" lean-forward="true" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
           <folding>
             <element signature="e#340#341#0" expanded="true" />
             <element signature="e#392#393#0" expanded="true" />
