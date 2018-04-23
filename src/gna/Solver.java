@@ -20,10 +20,10 @@ public class Solver
         solutionMethod = new ArrayList<>();
         Comparator<State> comparator;
         if (priority == PriorityFunc.HAMMING) {
-		    comparator = Comparator.comparingInt(o -> (o.getCurrConfiguration().hamming() + o.getSteps()));
+		    comparator = Comparator.comparingInt(o -> (o.getConfiguration().hamming() + o.getSteps()));
 
 		} else if (priority == PriorityFunc.MANHATTAN) {
-            comparator = Comparator.comparingInt(o -> (o.getCurrConfiguration().manhattan() + o.getSteps()));
+            comparator = Comparator.comparingInt(o -> (o.getRanking()));
 
 		} else {
 			throw new IllegalArgumentException("Priority function not supported");
@@ -31,9 +31,26 @@ public class Solver
 
         PriorityQueue<State> queue = new PriorityQueue<>(comparator);
         solve(initial, queue);
-
         }
-	
+
+    private void solve(Board initial, PriorityQueue<State> queue){
+        State currState = new State(initial, 0, null);
+        queue.add(currState);
+        //int[][] result = solutionBoard(initial);
+
+        while (! currState.getConfiguration().isGoal()){
+            currState = queue.remove();
+            for (Board currNeighbor: currState.getConfiguration().neighbors()){
+                if (currState.getPreviousState() == null || ! currNeighbor.equals(currState.getPreviousState().getConfiguration())){
+                    queue.add(new State(currNeighbor, currState.getSteps() + 1, currState));
+                }
+            }
+        }
+        while (currState != null){
+            solutionMethod.add(0, currState.getConfiguration());
+            currState = currState.getPreviousState();
+        }
+    }
 
 	/**
 	 * Returns a List of board positions as the solution. It should contain the initial
@@ -44,43 +61,7 @@ public class Solver
 	    return solutionMethod;
 	}
 
-	public void solutionToString(){
-        for (int i = 0; i < solutionMethod.size(); i++) {
-            System.out.println(solutionMethod.get(i) + "\n");
-        }
-    }
 
-    public int[][] solutionBoard(Board board){
-        int[][] tiles = new int[board.getTiles().length][board.getTiles()[0].length];
-        int k = 1;
-        for (int i = 0; i < board.getTiles().length; i++) {
-            for (int j = 0; j < board.getTiles()[i].length; j++) {
-                tiles[i][j] = k;
-                k++;
-            }
-        }
-        tiles[board.getTiles().length-1][board.getTiles()[0].length - 1] = 0;
-        return tiles;
-    }
-
-    private int solve(Board initial, PriorityQueue<State> queue){
-        int currSteps = 0;
-        State currState = new State(initial, null, 0);
-        queue.add(currState);
-        int[][] result = solutionBoard(initial);
-
-        while (! currState.getCurrConfiguration().isEqualBoard(result)){
-            currState = queue.peek();
-            solutionMethod.add(currState.getCurrConfiguration());
-            currSteps++;
-            queue.remove();
-            List<Board> neighbors = (List<Board>) currState.getCurrConfiguration().neighbors();
-            for (Board currNeighbor: neighbors){
-                queue.add(new State(currNeighbor, currState.getCurrConfiguration(), currSteps));
-            }
-        }
-        return currSteps;
-    }
 }
 
 
