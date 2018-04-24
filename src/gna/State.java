@@ -10,7 +10,6 @@ public class State {
         this.configuration = configuration;
         this.steps = steps;
         this.previousState = previousState;
-        this.ranking = configuration.hamming() + steps;
     }
 
     public Board getConfiguration() {
@@ -25,7 +24,4 @@ public class State {
         return previousState;
     }
 
-    public int getRanking() {
-        return ranking;
-    }
 }

@@ -6,6 +6,8 @@ import libpract.PriorityFunc;
 
 public class Solver
 {
+    private int steps;
+    private int generatedStates;
 
 	public List<Board> solutionMethod;
 	/**
@@ -23,7 +25,7 @@ public class Solver
 		    comparator = Comparator.comparingInt(o -> (o.getConfiguration().hamming() + o.getSteps()));
 
 		} else if (priority == PriorityFunc.MANHATTAN) {
-            comparator = Comparator.comparingInt(o -> (o.getRanking()));
+            comparator = Comparator.comparingInt(o -> (o.getConfiguration().manhattan() + o.getSteps()));
 
 		} else {
 			throw new IllegalArgumentException("Priority function not supported");
@@ -36,19 +38,23 @@ public class Solver
     private void solve(Board initial, PriorityQueue<State> queue){
         State currState = new State(initial, 0, null);
         queue.add(currState);
-        //int[][] result = solutionBoard(initial);
+        generatedStates = 1;
+        steps = 0;
+
 
         while (! currState.getConfiguration().isGoal()){
             currState = queue.remove();
             for (Board currNeighbor: currState.getConfiguration().neighbors()){
                 if (currState.getPreviousState() == null || ! currNeighbor.equals(currState.getPreviousState().getConfiguration())){
                     queue.add(new State(currNeighbor, currState.getSteps() + 1, currState));
+                    generatedStates++;
                 }
             }
         }
         while (currState != null){
             solutionMethod.add(0, currState.getConfiguration());
             currState = currState.getPreviousState();
+            steps = solutionMethod.size() - 1;
         }
     }
 
@@ -61,7 +67,13 @@ public class Solver
 	    return solutionMethod;
 	}
 
+    public int getSteps() {
+        return steps;
+    }
 
+    public int getGeneratedStates() {
+        return generatedStates;
+    }
 }
 
 
